@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lunarlander-ppo"
+version = "0.1.0"
+description = "PPO smoke test on LunarLander-v3 (Gymnasium) with Stable-Baselines3"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "stable-baselines3>=2.0",
+  "gymnasium[box2d]>=0.29",
+  "tensorboard>=2.13",
+  "tqdm>=4.66",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
