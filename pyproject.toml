@@ -1,20 +1,14 @@
-[build-system]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "lunarlander-ppo"
+name = "ppo"
 version = "0.1.0"
-description = "PPO smoke test on LunarLander-v3 (Gymnasium) with Stable-Baselines3"
+description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 dependencies = [
-  "stable-baselines3>=2.0",
-  "gymnasium[box2d]>=0.29",
-  "tensorboard>=2.13",
-  "tqdm>=4.66",
+    "numpy>=2.4.3",
+    "torch>=2.11.0",
 ]
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-
+[[tool.uv.index]]
+url = "https://download.pytorch.org/whl/cpu"
+default = true

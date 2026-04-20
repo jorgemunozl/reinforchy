@@ -4,10 +4,16 @@ Version: 0.1.0
 Summary: PPO smoke test on LunarLander-v3 (Gymnasium) with Stable-Baselines3
 Requires-Python: >=3.10
 Description-Content-Type: text/markdown
+License-File: LICENSE
 Requires-Dist: stable-baselines3>=2.0
 Requires-Dist: gymnasium[box2d]>=0.29
 Requires-Dist: tensorboard>=2.13
 Requires-Dist: tqdm>=4.66
+Requires-Dist: torch @ https://download.pytorch.org/whl/cpu/torch-2.3.1%2Bcpu-cp310-cp310-linux_x86_64.whl ; platform_system == "Linux" and platform_machine == "x86_64" and python_version == "3.10"
+Requires-Dist: torch @ https://download.pytorch.org/whl/cpu/torch-2.3.1%2Bcpu-cp311-cp311-linux_x86_64.whl ; platform_system == "Linux" and platform_machine == "x86_64" and python_version == "3.11"
+Requires-Dist: torch @ https://download.pytorch.org/whl/cpu/torch-2.3.1%2Bcpu-cp312-cp312-linux_x86_64.whl ; platform_system == "Linux" and platform_machine == "x86_64" and python_version == "3.12"
+Requires-Dist: torch==2.3.1; platform_system != "Linux"
+Dynamic: license-file
 
 # LunarLander-v3 PPO smoke test (SB3 + Gymnasium)
 
