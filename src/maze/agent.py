@@ -36,9 +36,7 @@ class MazeAgentConfig:
 
 ACTION_MEANING = {
     0: "left",
-    1: "rigth",
-    2: "left",
-    3: "right",
+    1: "right",
 }
 
 
@@ -62,13 +60,17 @@ config = MazeAgentConfig()
 agent = MazeAgent(config).to(config.device)
 
 state = 0
-
 # Here you can directly backpropagate the error in the state
 optimizer = optim.SGD(agent.parameters(), lr=0.01)
+
 for _ in range(100):
     optimizer.zero_grad()
     action_probs = agent(torch.tensor([[state]], device=config.device, dtype=torch.float32))
-    loss = F.mse_loss(action_probs.argmax(dim=-1), torch.tensor([0.]))  
+    # Supervise the policy to move back toward 0 (the "middle").
+    # Use a differentiable loss on the probabilities (no argmax in the loss).
+    target_action = 0 if state > 0 else 1 if state < 0 else 0
+    target = torch.tensor([target_action], device=config.device, dtype=torch.long)
+    loss = F.nll_loss(torch.log(action_probs + 1e-8), target)
     loss.backward()
     optimizer.step()
 
@@ -83,6 +85,5 @@ for _ in range(100):
 
     print(action_meaning(discrete_action), end=" ")
     print(f"state: {state}")
-    time.sleep(0.01)
 
 
